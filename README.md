@@ -2,7 +2,7 @@
 
 > 🇩🇪 An OpenClaw skill for tracking product deals at German supermarkets (Aldi, Lidl, REWE, EDEKA, Kaufland and more) via the [Marktguru](https://www.marktguru.de) API.
 
-[![ClawHub](https://img.shields.io/badge/clawhub-supermarket--deals-blue)](https://clawhub.com/skills/benmillerat/supermarket-deals)
+[![ClawHub](https://img.shields.io/badge/clawhub-supermarket--deals-blue)](https://clawhub.ai/benmillerat/supermarket-deals)
 
 ---
 
