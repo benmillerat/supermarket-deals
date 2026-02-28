@@ -1,3 +1,8 @@
+---
+name: supermarket-deals
+description: Search German supermarket flyers (Aldi, Lidl, REWE, EDEKA, Kaufland) for product deals via Marktguru. Results ranked by best price per litre (EUR/L). No API key needed.
+---
+
 # supermarket-deals
 
 Search German supermarket flyers for product deals via the Marktguru API. Results are ranked by best price per litre.
