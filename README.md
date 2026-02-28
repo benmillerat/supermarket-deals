@@ -49,7 +49,7 @@ npm run build
 
 **Via GitHub** (available now):
 ```bash
-git clone https://github.com/benmillerat/supermarket-deals.git
+git clone https://github.com/benmillerat/openclaw-supermarket-deals.git
 cd supermarket-deals
 npm install
 npm run build
