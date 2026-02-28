@@ -39,8 +39,17 @@ The skill is intentionally a **dumb data fetcher**. The agent applies the smart 
 
 ## Install
 
+**Via ClawHub** (once approved):
 ```bash
 clawhub install supermarket-deals
+cd supermarket-deals
+npm install
+npm run build
+```
+
+**Via GitHub** (available now):
+```bash
+git clone https://github.com/benmillerat/supermarket-deals.git
 cd supermarket-deals
 npm install
 npm run build
