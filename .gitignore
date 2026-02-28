@@ -1,0 +1,4 @@
+node_modules/
+dist/
+~/.supermarket-deals/
+*.js.map
