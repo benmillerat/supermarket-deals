@@ -58,6 +58,40 @@ function pad(input: string, maxLength: number): string {
   return value.padEnd(maxLength, " ");
 }
 
+function normalizeComparableText(input: string): string {
+  return input.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function formatProductDetails(deal: DisplayDeal): string {
+  const productName = deal.productName.trim();
+  const description = deal.description.trim();
+  const normalizedProductName = normalizeComparableText(productName);
+  const hasKnownProductName = normalizedProductName !== "" && normalizedProductName !== "unknown product";
+
+  if (!hasKnownProductName && !description) {
+    return productName || "-";
+  }
+
+  if (!description) {
+    return productName || "-";
+  }
+
+  if (!hasKnownProductName) {
+    return description;
+  }
+
+  const normalizedDescription = normalizeComparableText(description);
+
+  if (
+    normalizedDescription === normalizedProductName ||
+    normalizedDescription.startsWith(normalizedProductName)
+  ) {
+    return description;
+  }
+
+  return `${productName} — ${description}`;
+}
+
 export function computePricePerLitre(offer: OfferResult): number | null {
   const unit = offer.unit?.shortName?.toLowerCase();
   if (unit === "l" && typeof offer.referencePrice === "number") {
@@ -123,16 +157,16 @@ export function formatDealsTable(deals: DisplayDeal[]): string {
   }
 
   const headers = {
-    description: 55,
+    productDetails: 60,
     store: 14,
     size: 10,
     price: 10,
     litre: 11,
-    validity: 21,
+    validity: "YYYY-MM-DD – YYYY-MM-DD".length,
   };
 
   const headerLine = [
-    pad("Description", headers.description),
+    pad("Product / Details", headers.productDetails),
     pad("Store", headers.store),
     pad("Size", headers.size),
     pad("Price", headers.price),
@@ -144,10 +178,10 @@ export function formatDealsTable(deals: DisplayDeal[]): string {
   const separator = "-".repeat(headerLine.length);
 
   const rows = deals.map((deal) => {
-    const desc = deal.description || deal.productName;
+    const productDetails = formatProductDetails(deal);
     const url = deal.url ?? "-";
     return [
-      pad(desc, headers.description),
+      pad(productDetails, headers.productDetails),
       pad(deal.store, headers.store),
       pad(deal.size, headers.size),
       pad(formatPrice(deal.price), headers.price),
